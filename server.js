@@ -1,6 +1,7 @@
-var http = require('http');
-http.createServer(function (req, res) {
-  res.writeHead(200, {'Content-Type': 'text/plain'});
-  res.end('Hello World\n');
-}).listen(process.env.OPENSHIFT_NODEJS_PORT, process.env.OPENSHIFT_NODEJS_IP);
-console.log('Hello Kitty');
+var Sequelize = require('sequelize')
+  , config    = require('./config')
+  , sequelize = new Sequelize(config.database, config.username, config.password, {
+    host: config.host,
+    port: config.port,
+    logging: false
+  })
